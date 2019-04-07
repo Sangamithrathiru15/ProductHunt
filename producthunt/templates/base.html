@@ -7,12 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Sangamithra Thirugnanam</title>
+    <title>Product Hunt</title>
 
     <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
+<link href="{% static 'open-iconic/font/css/open-iconic-bootstrap.css' %}" rel="stylesheet">
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -32,8 +31,8 @@
   </head>
   <body>
     <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="">
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand" href="{% url 'homepage' %}">
   <img src="{% static 'logo.png' %}" width=50 height=50 class="d-inline-block align-top" />
   
   <font size="6">Product Hunt</font></a>
@@ -43,6 +42,8 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
     {% if user.is_authenticated %}
+    <br/>
+    <a class="nav-item nav-link " href="{% url 'create' %}"><span class="oi oi-plus"></span></a>
     <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
     <form id="logout" method="POST" action="{% url 'logout' %}">
     {% csrf_token %}
@@ -59,6 +60,11 @@
 
 <main role="main">
 
+{% block content%}
+
+{% endblock %}
+
+<br/>
 
 
 </main>
@@ -77,12 +83,3 @@
 
 
 
-Hello this is the begining
-<br/>
-
-{% block content%}
-
-{% endblock %}
-
-<br/>
-hello you are at the end
